@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I'm Sorry 💔</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #d8b4fe, #a78bfa);
+      overflow: hidden;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #9333ea;
+      transform: rotate(-45deg);
+      animation: float 6s infinite ease-in-out;
+    }
+
+    .heart::before, .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #9333ea;
+      border-radius: 50%;
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: auto;
+      right: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0) rotate(-45deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) translateX(50px) rotate(-45deg);
+        opacity: 0;
+      }
+    }
+
+    .heart:nth-child(odd) {
+      animation-duration: 7s;
+      animation-delay: -2s;
+    }
+
+    .heart:nth-child(even) {
+      animation-duration: 5s;
+      animation-delay: -1s;
+    }
+
+    .stars {
+      width: 2px;
+      height: 2px;
+      background: white;
+      position: absolute;
+      border-radius: 50%;
+      animation: twinkle 4s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      from {
+        opacity: 0.1;
+        transform: scale(1);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+    }
+
+    .stars:nth-child(odd) {
+      animation-duration: 3s;
+    }
+
+    .stars:nth-child(even) {
+      animation-duration: 5s;
+    }
+
+    #photo-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border-radius: 60%;
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    #photo-container img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 60%;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    #photo-container img.active {
+      opacity: 1;
+      position: relative;
+    }
+
+    .flower {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #c084fc;
+      border-radius: 50%;
+      animation: flowerFall 3s linear infinite;
+    }
+
+    .flower::before,
+    .flower::after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #c084fc;
+      border-radius: 50%;
+    }
+
+    .flower::before {
+      top: -5px;
+      left: 5px;
+    }
+
+    .flower::after {
+      top: 5px;
+      left: -5px;
+    }
+
+    @keyframes flowerFall {
+      from {
+        transform: translateY(-10vh) rotate(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body class="h-screen flex items-center justify-center relative">
+  <!-- Floating Hearts -->
+  <div id="floating-hearts">
+    <div class="heart" style="top: 10%; left: 20%;"></div>
+    <div class="heart" style="top: 20%; left: 50%;"></div>
+    <div class="heart" style="top: 30%; left: 80%;"></div>
+    <div class="heart" style="top: 40%; left: 10%;"></div>
+    <div class="heart" style="top: 50%; left: 40%;"></div>
+    <div class="heart" style="top: 60%; left: 70%;"></div>
+    <div class="heart" style="top: 70%; left: 30%;"></div>
+    <div class="heart" style="top: 80%; left: 60%;"></div>
+  </div>
+
+  <!-- Twinkling Stars -->
+  <div id="twinkling-stars">
+    <div class="stars" style="top: 5%; left: 10%;"></div>
+    <div class="stars" style="top: 15%; left: 30%;"></div>
+    <div class="stars" style="top: 25%; left: 60%;"></div>
+    <div class="stars" style="top: 35%; left: 80%;"></div>
+    <div class="stars" style="top: 45%; left: 15%;"></div>
+    <div class="stars" style="top: 55%; left: 50%;"></div>
+    <div class="stars" style="top: 65%; left: 75%;"></div>
+    <div class="stars" style="top: 85%; left: 25%;"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="text-center space-y-8">
+    <h1 class="text-5xl md:text-7xl font-extrabold text-white drop-shadow-md animate-bounce">
+      I'm Sorry Dedel 
+    </h1>
+    <p class="text-2xl md:text-3xl font-medium text-white drop-shadow-lg">
+      I know I hurt you, and I regret it deeply...
+    </p>
+
+    <button id="revealButton" 
+      class="bg-purple-600 hover:bg-purple-800 text-white text-xl md:text-2xl font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-2xl transition-all duration-300">
+      Please Open This 🙏
+    </button>
+
+    <div id="hiddenMessage" class="hidden fade-in">
+      <div id="photo-container" class="relative mt-8">
+        <!-- Gambar slideshow -->
+        <img src="fotodedel4.jpeg" class="active" alt="Foto Dedel" />
+        <img src="fotodedel2.jpeg" alt="Foto Lain 1" />
+        <img src="fotodedel3.jpeg" alt="Foto Lain 2" />
+      </div>
+
+      <div class="mt-8 space-y-4">
+        <p class="text-3xl md:text-4xl text-white font-bold">
+          I'm truly sorry baby... 💜
+        </p>
+        <p class="text-xl md:text-2xl text-white">
+            maafin akuu bebeyyyy. maaff kalo aku sering marah marah sama kamu, 
+        </p>
+        <p class="text-xl md:text-2xl text-white">
+          aku janji ga bikin kamu sedih sampe sakit hati lagiii :'(
+      </p>
+        <div class="mt-6">
+          <button id="celebrateButton" 
+            class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-lg shadow-md transition-all duration-300">
+            Tap This if You Are Excused 💞
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const revealButton = document.getElementById("revealButton");
+    const hiddenMessage = document.getElementById("hiddenMessage");
+    const photoContainer = document.getElementById("photo-container");
+    const celebrateButton = document.getElementById("celebrateButton");
+
+    let currentIndex = 0;
+    let slideshowInterval;
+
+    revealButton.addEventListener("click", () => {
+      hiddenMessage.classList.remove("hidden");
+      revealButton.classList.add("hidden");
+
+      startSlideshow();
+    });
+
+    function startSlideshow() {
+      const images = photoContainer.querySelectorAll("img");
+      images.forEach(img => img.classList.remove("active"));
+      images[0].classList.add("active");
+      currentIndex = 0;
+
+      slideshowInterval = setInterval(() => {
+        images[currentIndex].classList.remove("active");
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add("active");
+      }, 3000); // ganti gambar tiap 3 detik
+    }
+
+    celebrateButton.addEventListener("click", () => {
+      for (let i = 0; i < 50; i++) {
+        createFlower();
+      }
+    });
+
+    function createFlower() {
+      const flower = document.createElement("div");
+      flower.classList.add("flower");
+      flower.style.left = Math.random() * window.innerWidth + "px";
+      flower.style.top = "-20px";
+      flower.style.animationDuration = 3 + Math.random() * 2 + "s";
+      document.body.appendChild(flower);
+
+      flower.addEventListener("animationend", () => {
+        flower.remove();
+      });
+    }
+  </script>
+</body>
+</html>
